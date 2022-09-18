@@ -15,14 +15,7 @@ public class Wheel : MonoBehaviour
         float t = Input.GetAxis("Vertical") * torque;
         float v = Input.GetAxis("Horizontal") * volante;
         float f = Input.GetKey(KeyCode.Space) ? freio : 0;
-        if (Input.GetAxis("Vertical") == 0)
-        {
-            f = freio;
-        }
-        else
-        {
-            f = 0;
-        }
+        f = (Input.GetAxis("Vertical") == 0) ? freio : 0;
         Vector3 posicao;
         Quaternion rotacao;
 
