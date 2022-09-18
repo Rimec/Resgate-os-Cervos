@@ -9,13 +9,13 @@ public class Wheel : MonoBehaviour
     [SerializeField] private float torque = 1000f;
     [SerializeField] private float volante = 30.0f;
     [SerializeField] private float freio = 2000.0f;
-    // Update is called once per frame
     void FixedUpdate()
     {
         float t = Input.GetAxis("Vertical") * torque;
         float v = Input.GetAxis("Horizontal") * volante;
         float f = Input.GetKey(KeyCode.Space) ? freio : 0;
         f = (Input.GetAxis("Vertical") == 0) ? freio : 0;
+
         Vector3 posicao;
         Quaternion rotacao;
 
