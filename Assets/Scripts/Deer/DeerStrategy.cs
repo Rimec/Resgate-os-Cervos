@@ -1,5 +1,5 @@
 using UnityEngine;
 
 public interface DeerStrategy {
-    public void Action();
+    public void Action(Animator _animator);
 }
