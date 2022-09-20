@@ -5,7 +5,11 @@ using UnityEngine;
 public class DeerIdle : DeerStrategy
 {
     // private float lastValue = 0.0f;
-    public void Action(Animator _animator){
+    public void Action(GameObject _deer){
+        Animator _animator = _deer.GetComponent<Animator>();
+        SetAnimation(_animator);
+    }
+    private void SetAnimation(Animator _animator){
         int randomNumber = Random.Range(0, 3);
         switch (randomNumber)
         {

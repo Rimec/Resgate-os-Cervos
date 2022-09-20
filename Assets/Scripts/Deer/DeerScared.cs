@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class DeerScared : DeerStrategy
 {
-    public void Action(Animator _animator){
+    public void Action(GameObject _deer){
+        Animator _animator = _deer.GetComponent<Animator>();
+        SetAnimation(_animator);
+    }
+    private void SetAnimation(Animator _animator){
         _animator.SetBool("scared", true);
         _animator.SetBool("idle_0",false);
         _animator.SetBool("idle_1",false);

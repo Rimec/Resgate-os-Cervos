@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1326,7 +1326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b52a508b9443e45ac901ef534f9689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 272695087}
   runningRange: 12
   scareRange: 20
   playerInRunningRange: 0
@@ -1334,9 +1333,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  runPointRange: 0
-  player: {fileID: 1418150489}
-  myRigidBody: {fileID: 0}
+  player: {fileID: 1418150484}
   speed: 2
 --- !u!4 &272695089
 Transform:
@@ -2611,7 +2608,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b52a508b9443e45ac901ef534f9689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 636858952}
   runningRange: 12
   scareRange: 20
   playerInRunningRange: 0
@@ -2619,9 +2615,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  runPointRange: 0
-  player: {fileID: 1418150489}
-  myRigidBody: {fileID: 0}
+  player: {fileID: 1418150484}
   speed: 2
 --- !u!4 &636858954
 Transform:
@@ -4148,7 +4142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b52a508b9443e45ac901ef534f9689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1233497208}
   runningRange: 12
   scareRange: 20
   playerInRunningRange: 0
@@ -4156,9 +4149,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  runPointRange: 0
-  player: {fileID: 1418150489}
-  myRigidBody: {fileID: 0}
+  player: {fileID: 1418150484}
   speed: 2
 --- !u!4 &1233497210
 Transform:
@@ -5511,7 +5502,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b52a508b9443e45ac901ef534f9689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1500919536}
   runningRange: 12
   scareRange: 20
   playerInRunningRange: 0
@@ -5519,9 +5509,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  runPointRange: 0
-  player: {fileID: 1418150489}
-  myRigidBody: {fileID: 0}
+  player: {fileID: 1418150484}
   speed: 2
 --- !u!4 &1500919538
 Transform:
@@ -6736,7 +6724,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b52a508b9443e45ac901ef534f9689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1808624850}
   runningRange: 12
   scareRange: 20
   playerInRunningRange: 0
@@ -6744,9 +6731,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  runPointRange: 0
-  player: {fileID: 1418150489}
-  myRigidBody: {fileID: 0}
+  player: {fileID: 1418150484}
   speed: 2
 --- !u!4 &1808624852
 Transform:
@@ -8756,7 +8741,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b52a508b9443e45ac901ef534f9689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 6623689902824221986}
   runningRange: 12
   scareRange: 20
   playerInRunningRange: 0
@@ -8764,9 +8748,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  runPointRange: 0
-  player: {fileID: 1418150489}
-  myRigidBody: {fileID: 0}
+  player: {fileID: 1418150484}
   speed: 2
 --- !u!95 &6623689902824221986
 Animator:

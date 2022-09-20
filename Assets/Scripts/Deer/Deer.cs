@@ -4,45 +4,35 @@ using UnityEngine;
 
 public class Deer : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
     [SerializeField] private float runningRange, scareRange;
     [SerializeField] private bool playerInRunningRange, playerInScareRange;
     [SerializeField] private LayerMask whatIsPlayer;
-    [SerializeField] private DeerStrategy deerStrategy;
-    [SerializeField] private float runPointRange;
-
-    private DeerIdle idle = new DeerIdle();
-    private float time = 0.0f;
-    [SerializeField] private Transform player;
-    [SerializeField] private Rigidbody myRigidBody;
+    [SerializeField] private GameObject player;
     [SerializeField] private float speed;
+    private DeerStrategy deerStrategy;
+    private DeerIdle idle = new DeerIdle();
+    private DeerRunning running = new DeerRunning();
+    private DeerScared scared = new DeerScared();
+    private float time = 0.0f;
 
-    private void Start() {
-        myRigidBody = GetComponent<Rigidbody>();
-    }
     private void FixedUpdate()
     {
         playerInScareRange = Physics.CheckSphere(transform.position, scareRange, whatIsPlayer);
         playerInRunningRange = Physics.CheckSphere(transform.position, runningRange, whatIsPlayer);
-        deerStrategy = (playerInScareRange) ? new DeerScared() : idle;
-
-        if (playerInRunningRange)
-        {
-            deerStrategy = new DeerRunning();
-            Run();
-        }
+        deerStrategy = (playerInScareRange) ? scared : idle;
+        deerStrategy = (playerInRunningRange) ? running : deerStrategy;
         if (deerStrategy == idle)
         {
             time += Time.fixedDeltaTime;
             if (time >= 5.0f)
             {
-                deerStrategy?.Action(animator);
+                deerStrategy?.Action(this.gameObject);
                 time = 0.0f;
             }
         }
         else
         {
-            deerStrategy?.Action(animator);
+            deerStrategy?.Action(this.gameObject);
         }
         if (CollidedWithPlayer())
         {
@@ -57,16 +47,9 @@ public class Deer : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, scareRange);
     }
-    public void Run()
-    {
-        Vector3 direction = transform.position - player.position;
-        gameObject.transform.rotation = Quaternion.LookRotation(direction);
-        myRigidBody.MovePosition(myRigidBody.position + direction.normalized * speed * Time.deltaTime);
-    }
     public bool CollidedWithPlayer(){
         bool collided = false;
-        Vector3 direction = player.position - transform.position;
-        if (direction.magnitude <= 2.0f)
+        if(Vector3.Distance(transform.position, player.transform.position) < 2.0f)
         {
             collided = true;
         }
@@ -75,4 +58,6 @@ public class Deer : MonoBehaviour
     public void Rescued(){
         Destroy(this.gameObject);
     }
+    public float GetSpeed => speed;
+    public GameObject GetPlayer => player;
 }
