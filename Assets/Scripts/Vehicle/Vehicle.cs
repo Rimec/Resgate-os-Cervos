@@ -10,7 +10,7 @@ public class Vehicle : MonoBehaviour
     [SerializeField] private Transform initialTransform;
     private void Start(){
         initialTransform = transform;
-        GameManager.instance.SetAmountOfDeerInGame(GameObject.FindGameObjectsWithTag("Deer").Length);
+        GameManager.instance.SetAmountOfDeerInGame(FindObjectsOfType<ScreensManager>().Length);
     }
     private void Update()
     {

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private bool lost = false;
     private bool hasWon = false;
     [SerializeField] private int amountOfDeerInGame = int.MaxValue;
+    [SerializeField] private GameObject player;
     private void Awake() {
         if (instance == null)
         {
@@ -74,4 +75,5 @@ public class GameManager : MonoBehaviour
     public void SetHasWon(bool value){
         hasWon = value;
     }
+    public GameObject GetPlayer => player;
 }

@@ -9,12 +9,15 @@ public class DeerRunning : DeerStrategy
     Rigidbody _deerRigidbody = null;
     float _speed = -30.0f;
     public void Action(GameObject _deer){
-        _animator = _deer.GetComponent<Animator>();
-        _player = _deer.GetComponent<Deer>().GetPlayer;
-        _deerRigidbody = _deer.GetComponent<Rigidbody>();
-        _speed = _deer.GetComponent<Deer>().GetSpeed;
-        SetAnimation(_animator);
-        Run(_deer, _player, _deerRigidbody, _speed);
+        _player = GameManager.instance.GetPlayer;
+        if (_player != null)
+        {
+            _animator = _deer.GetComponent<Animator>();
+            _deerRigidbody = _deer.GetComponent<Rigidbody>();
+            _speed = _deer.GetComponent<Deer>().GetSpeed;
+            SetAnimation(_animator);
+            Run(_deer, _player, _deerRigidbody, _speed);
+        }
     }
     private void SetAnimation(Animator _animator){
         _animator.SetBool("running", true);

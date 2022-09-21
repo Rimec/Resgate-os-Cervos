@@ -139,12 +139,12 @@ public class ScreensManager : MonoBehaviour
         hudPanel.SetActive(false);
     }
 
-    void ShowLoseScreen()
+    public void ShowLoseScreen()
     {
         losePanel.SetActive(true);
         hudPanel.SetActive(false);
     }
-    void ShowWinScreen()
+    public void ShowWinScreen()
     {
         winPanel.SetActive(true);
         hudPanel.SetActive(false);

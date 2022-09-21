@@ -7,7 +7,6 @@ public class Deer : MonoBehaviour
     [SerializeField] private float runningRange, scareRange;
     [SerializeField] private bool playerInRunningRange, playerInScareRange;
     [SerializeField] private LayerMask whatIsPlayer;
-    [SerializeField] private GameObject player;
     [SerializeField] private float speed;
     private DeerStrategy deerStrategy;
     private DeerIdle idle = new DeerIdle();
@@ -49,9 +48,13 @@ public class Deer : MonoBehaviour
     }
     public bool CollidedWithPlayer(){
         bool collided = false;
-        if(Vector3.Distance(transform.position, player.transform.position) < 2.0f)
+        GameObject player =  GameManager.instance.GetPlayer;
+        if (player != null)
         {
-            collided = true;
+            if(Vector3.Distance(transform.position,player.transform.position) < 2.0f)
+            {
+                collided = true;
+            }
         }
         return collided;
     }
@@ -60,5 +63,4 @@ public class Deer : MonoBehaviour
         Destroy(this.gameObject);
     }
     public float GetSpeed => speed;
-    public GameObject GetPlayer => player;
 }
