@@ -9,10 +9,9 @@ public class GameManager : MonoBehaviour
     private int life = 3;
     private int maxLife = 3;
     private int deersColected = 0;
+    private bool lost = false;
+    private bool hasWon = false;
     [SerializeField] private int amountOfDeerInGame = int.MaxValue;
-    private void Start(){
-        amountOfDeerInGame = GameObject.FindGameObjectsWithTag("Deer").Length;
-    }
     private void Awake() {
         if (instance == null)
         {
@@ -33,10 +32,12 @@ public class GameManager : MonoBehaviour
     }
     public void RemoveLife(int value){
         life -= value;
-        if (life < 0)
+        if (life <= 0)
         {
             life = 0;
-            SceneManager.LoadScene("LoseGame");
+
+            SetLost(true);
+            SceneManager.LoadScene("Scenes/EndGame");
         }
     }
     public void SetLife(int value){
@@ -52,5 +53,25 @@ public class GameManager : MonoBehaviour
     }
     public void AddDeersCollected(){
         deersColected++;
+        if (deersColected == amountOfDeerInGame)
+        {
+            SetHasWon(true);
+            SceneManager.LoadScene("Scenes/EndGame");
+        }
+    }
+    public void SetDeersCollected(int value){
+        deersColected = value;
+    }
+    public void SetAmountOfDeerInGame(int value){
+        amountOfDeerInGame = value;
+    }
+    public int GetMaxLife => maxLife;
+    public bool GetHasWon => hasWon;
+    public bool GetLost => lost;
+    public void SetLost(bool value){
+        lost = value;
+    }
+    public void SetHasWon(bool value){
+        hasWon = value;
     }
 }

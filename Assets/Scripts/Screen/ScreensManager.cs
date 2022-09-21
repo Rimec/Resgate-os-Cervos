@@ -24,6 +24,20 @@ public class ScreensManager : MonoBehaviour
 
     #endregion
     
+    #region Lose
+
+    [SerializeField] private GameObject losePanel;
+    [SerializeField] private Button quitLoseButton, restartLoseButton;
+
+    #endregion
+
+    #region Win
+
+    [SerializeField] private GameObject winPanel;
+    [SerializeField] private Button quitWinButton, restartWinButton;
+
+    #endregion
+
     [SerializeField] private Sprite withMusic, withoutMusic;
 
     private bool musicIsPlaying;
@@ -60,6 +74,12 @@ public class ScreensManager : MonoBehaviour
         pauseButton.onClick.AddListener(Pause);
         resumeButton.onClick.AddListener(Resume);
         quitGameButton.onClick.AddListener(BackToInitialScreen);
+
+        quitLoseButton.onClick.AddListener(QuitGame);
+        restartLoseButton.onClick.AddListener(RestartGame);
+
+        quitWinButton.onClick.AddListener(QuitGame);
+        restartWinButton.onClick.AddListener(RestartGame);
     }
 
     void ShowInitialScreen()
@@ -90,6 +110,16 @@ public class ScreensManager : MonoBehaviour
         settingsScreen.SetActive(false);
         pausePanel.SetActive(false);
     }
+    void RestartGame(){
+        GameManager.instance.SetLife(GameManager.instance.GetMaxLife);
+        GameManager.instance.SetDeersCollected(0);
+        SceneManager.LoadScene("Scenes/Game");
+        hudPanel.SetActive(true);
+        
+        initialScreen.SetActive(false);
+        settingsScreen.SetActive(false);
+        pausePanel.SetActive(false);
+    }
 
     void BackToInitialScreen()
     {
@@ -106,6 +136,17 @@ public class ScreensManager : MonoBehaviour
     {
         Time.timeScale = 0;
         pausePanel.SetActive(true);
+        hudPanel.SetActive(false);
+    }
+
+    void ShowLoseScreen()
+    {
+        losePanel.SetActive(true);
+        hudPanel.SetActive(false);
+    }
+    void ShowWinScreen()
+    {
+        winPanel.SetActive(true);
         hudPanel.SetActive(false);
     }
 

@@ -56,6 +56,7 @@ public class Deer : MonoBehaviour
         return collided;
     }
     public void Rescued(){
+        GameManager.instance.AddDeersCollected();
         Destroy(this.gameObject);
     }
     public float GetSpeed => speed;

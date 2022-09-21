@@ -6,17 +6,22 @@ using UnityEngine.SceneManagement;
 public class Vehicle : MonoBehaviour
 {
     private float time = 0.0f;
-    private float maxTime = 3.0f;
-    void Update()
+    [SerializeField] private float maxTime = 3.0f;
+    [SerializeField] private Transform initialTransform;
+    private void Start(){
+        initialTransform = transform;
+        GameManager.instance.SetAmountOfDeerInGame(GameObject.FindGameObjectsWithTag("Deer").Length);
+    }
+    private void Update()
     {
-        if (isTurned())
+        if (isTurned() || Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene("Game");
             GameManager.instance.RemoveLife(1);
+            ResetVehicle();
         }
     }
 
-    bool isTurned(){
+    private bool isTurned(){
         bool turned = false;
         if ((Vector3.Dot(transform.up, Vector3.down) > 0))
         {
@@ -28,6 +33,11 @@ public class Vehicle : MonoBehaviour
             }
         }
         return turned;
+    }
+
+    private void ResetVehicle(){
+        transform.position = initialTransform.position;
+        transform.rotation = initialTransform.rotation;
     }
 
 }
