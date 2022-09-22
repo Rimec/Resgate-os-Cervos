@@ -338,7 +338,7 @@ AudioSource:
   m_GameObject: {fileID: 326111822}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: bd87e568eb786c64eb7ffee5b9a14ce6, type: 2}
   m_audioClip: {fileID: 8300000, guid: 3fc08774301e4074bad12beae504c96f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1713,6 +1713,7 @@ MonoBehaviour:
   restartWinButton: {fileID: 1421834522}
   withMusic: {fileID: 21300000, guid: cd72311f1180af14db04c6aba447b34c, type: 3}
   withoutMusic: {fileID: 21300000, guid: 07b32c538f796844bbcd68c43da30dcf, type: 3}
+  musicIsPlaying: 0
   lifesText: {fileID: 403963220}
 --- !u!1 &1330662094
 GameObject:
@@ -2696,6 +2697,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086104377}
   m_CullTransparentMesh: 1
+--- !u!1 &2143384744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2143384746}
+  - component: {fileID: 2143384745}
+  m_Layer: 0
+  m_Name: game manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2143384745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143384744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2e8e27d908bb640abb57b5a1033fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amountOfDeerInGame: 2147483647
+  musica: {fileID: 326111826}
+--- !u!4 &2143384746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143384744}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2614556668551493434
 GameObject:
   m_ObjectHideFlags: 0

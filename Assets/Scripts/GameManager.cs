@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -13,6 +14,8 @@ public class GameManager : MonoBehaviour
     private bool hasWon = false;
     [SerializeField] private int amountOfDeerInGame = int.MaxValue;
     private ScreensManager screensManager;
+
+    public AudioSource musica;
 
     private void Start() {
         screensManager = FindObjectOfType<ScreensManager>();
@@ -83,5 +86,19 @@ public class GameManager : MonoBehaviour
     }
     public void SetHasWon(bool value){
         hasWon = value;
+    }
+
+    public void PauseMusic(bool value)
+    {
+        switch (value)
+        {
+            case true:
+                musica.Play();
+                break;
+            case false:
+                musica.Pause();
+                break;
+        }
+        
     }
 }

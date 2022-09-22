@@ -42,7 +42,7 @@ public class ScreensManager : MonoBehaviour
 
     [SerializeField] private Sprite withMusic, withoutMusic;
 
-    private bool musicIsPlaying;
+    public bool musicIsPlaying;
     
     #endregion
 
@@ -103,12 +103,14 @@ public class ScreensManager : MonoBehaviour
     }
     void EnableOrDisableSong()
     {
+        //aqui
         musicIsPlaying = !musicIsPlaying;
 
         var spriteTochange = musicIsPlaying ? withMusic : withoutMusic;
 
         songButton.GetComponent<Image>().sprite = spriteTochange;
         songPauseButton.GetComponent<Image>().sprite = spriteTochange;
+        GameManager.instance.PauseMusic(musicIsPlaying);
     }
     void StartGame()
     {
@@ -120,6 +122,7 @@ public class ScreensManager : MonoBehaviour
         pausePanel.SetActive(false);
         losePanel.SetActive(false);
         winPanel.SetActive(false);
+        GameManager.instance.PauseMusic(musicIsPlaying);
     }
     void RestartGame(){
         GameManager.instance.SetLife(GameManager.instance.GetMaxLife);
