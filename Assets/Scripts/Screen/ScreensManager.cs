@@ -27,14 +27,14 @@ public class ScreensManager : MonoBehaviour
     #region Lose
 
     [SerializeField] private GameObject losePanel;
-    [SerializeField] private Button quitLoseButton, restartLoseButton;
+    [SerializeField] private Button quitLoseButton, restartLoseButton, songLoseButton;
 
     #endregion
 
     #region Win
 
     [SerializeField] private GameObject winPanel;
-    [SerializeField] private Button quitWinButton, restartWinButton;
+    [SerializeField] private Button quitWinButton, restartWinButton, songWinButton;
 
     #endregion
 
@@ -67,7 +67,7 @@ public class ScreensManager : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     void AssingButtons()
@@ -79,15 +79,17 @@ public class ScreensManager : MonoBehaviour
         
         songButton.onClick.AddListener(EnableOrDisableSong);
         songPauseButton.onClick.AddListener(EnableOrDisableSong);
+        songLoseButton.onClick.AddListener(EnableOrDisableSong);
+        songWinButton.onClick.AddListener(EnableOrDisableSong);
         
         pauseButton.onClick.AddListener(Pause);
         resumeButton.onClick.AddListener(Resume);
         quitGameButton.onClick.AddListener(BackToInitialScreen);
 
-        quitLoseButton.onClick.AddListener(QuitGame);
+        quitLoseButton.onClick.AddListener(BackToInitialScreen);
         restartLoseButton.onClick.AddListener(RestartGame);
 
-        quitWinButton.onClick.AddListener(QuitGame);
+        quitWinButton.onClick.AddListener(BackToInitialScreen);
         restartWinButton.onClick.AddListener(RestartGame);
     }
 
@@ -101,6 +103,17 @@ public class ScreensManager : MonoBehaviour
         settingsScreen.SetActive(true);
         initialScreen.SetActive(false);
     }
+    public void ShowLoseScreen()
+    {
+        losePanel.SetActive(true);
+        hudPanel.SetActive(false);
+    }
+
+    public void ShowWinScreen()
+    {
+        winPanel.SetActive(true);
+        hudPanel.SetActive(false);
+    }
     void EnableOrDisableSong()
     {
         //aqui
@@ -110,10 +123,14 @@ public class ScreensManager : MonoBehaviour
 
         songButton.GetComponent<Image>().sprite = spriteTochange;
         songPauseButton.GetComponent<Image>().sprite = spriteTochange;
+        songLoseButton.GetComponent<Image>().sprite = spriteTochange;
+        songWinButton.GetComponent<Image>().sprite = spriteTochange;
         GameManager.instance.PauseMusic(musicIsPlaying);
     }
     void StartGame()
     {
+        GameManager.instance.SetLife(GameManager.instance.GetMaxLife);
+        GameManager.instance.SetDeersCollected(0);
         SceneManager.LoadScene("Scenes/Game");
         hudPanel.SetActive(true);
         
@@ -146,6 +163,12 @@ public class ScreensManager : MonoBehaviour
         hudPanel.SetActive(false);
         settingsScreen.SetActive(false);
         pausePanel.SetActive(false);
+        losePanel.SetActive(false);
+        winPanel.SetActive(false);
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
     }
 
     void Pause()
@@ -155,27 +178,18 @@ public class ScreensManager : MonoBehaviour
         hudPanel.SetActive(false);
     }
 
-    public void ShowLoseScreen()
-    {
-        losePanel.SetActive(true);
-        hudPanel.SetActive(false);
-    }
-    public void ShowWinScreen()
-    {
-        winPanel.SetActive(true);
-        hudPanel.SetActive(false);
-    }
-
-    public void RefreshLifes(){
-        lifesText.text = $"Vidas: {GameManager.instance.GetLife}";
-    }
-
     void Resume()
     {
         Time.timeScale = 1;
         hudPanel.SetActive(true);
         pausePanel.SetActive(false);
     }
+
+
+    public void RefreshLifes(){
+        lifesText.text = $"Vidas: {GameManager.instance.GetLife}";
+    }
+
     void QuitGame()
     {
         Application.Quit();

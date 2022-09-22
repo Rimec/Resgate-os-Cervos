@@ -15,6 +15,9 @@ public class Deer : MonoBehaviour
     private float time = 0.0f;
     [SerializeField] private GameObject player;
 
+    private void Start() {
+        GameManager.instance.AddAmountOfDeerInGame();
+    }
     private void FixedUpdate()
     {
         playerInScareRange = Physics.CheckSphere(transform.position, scareRange, whatIsPlayer);

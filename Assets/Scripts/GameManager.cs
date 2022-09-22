@@ -14,12 +14,9 @@ public class GameManager : MonoBehaviour
     private bool hasWon = false;
     [SerializeField] private int amountOfDeerInGame = int.MaxValue;
     private ScreensManager screensManager;
+    [SerializeField] private AudioSource music;
+    [SerializeField] private AudioClip menuMusic, gameMusic, endMusic;
 
-    public AudioSource musica;
-
-    private void Start() {
-        screensManager = FindObjectOfType<ScreensManager>();
-    }
     
     private void Awake() {
         if (instance == null)
@@ -30,6 +27,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        screensManager = FindObjectOfType<ScreensManager>();
         DontDestroyOnLoad(this.gameObject);
     }
     public void AddLife(int value){
@@ -46,9 +44,9 @@ public class GameManager : MonoBehaviour
         if (life <= 0)
         {
             life = 0;
-
             SetLost(true);
             SceneManager.LoadScene("Scenes/EndGame");
+            screensManager.ShowLoseScreen();
         }
     }
     public void SetLife(int value){
@@ -69,6 +67,7 @@ public class GameManager : MonoBehaviour
         {
             SetHasWon(true);
             SceneManager.LoadScene("Scenes/EndGame");
+            screensManager.ShowWinScreen();
         }
     }
     public void SetDeersCollected(int value){
@@ -77,10 +76,9 @@ public class GameManager : MonoBehaviour
     public void SetAmountOfDeerInGame(int value){
         amountOfDeerInGame = value;
     }
-    public int GetLife => life;
-    public int GetMaxLife => maxLife;
-    public bool GetHasWon => hasWon;
-    public bool GetLost => lost;
+    public void AddAmountOfDeerInGame(){
+        amountOfDeerInGame++;
+    }
     public void SetLost(bool value){
         lost = value;
     }
@@ -93,12 +91,23 @@ public class GameManager : MonoBehaviour
         switch (value)
         {
             case true:
-                musica.Play();
+                music.mute = false;
                 break;
             case false:
-                musica.Pause();
+                music.mute = true;
                 break;
         }
-        
     }
+
+    public void SetMusicNowPlaying(AudioClip np_music){
+        music.clip = np_music;
+    }
+    public AudioSource GetMusic => music;
+    public AudioClip GetMenuMusic => menuMusic;
+    public AudioClip GetGameMusic => gameMusic;
+    public AudioClip GetEndMusic => endMusic;
+    public int GetLife => life;
+    public int GetMaxLife => maxLife;
+    public bool GetHasWon => hasWon;
+    public bool GetLost => lost;
 }
