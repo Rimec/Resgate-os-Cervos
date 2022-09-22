@@ -13,6 +13,7 @@ public class Deer : MonoBehaviour
     private DeerRunning running = new DeerRunning();
     private DeerScared scared = new DeerScared();
     private float time = 0.0f;
+    [SerializeField] private GameObject player;
 
     private void FixedUpdate()
     {
@@ -48,7 +49,6 @@ public class Deer : MonoBehaviour
     }
     public bool CollidedWithPlayer(){
         bool collided = false;
-        GameObject player =  GameManager.instance.GetPlayer;
         if (player != null)
         {
             if(Vector3.Distance(transform.position,player.transform.position) < 2.0f)
@@ -63,4 +63,5 @@ public class Deer : MonoBehaviour
         Destroy(this.gameObject);
     }
     public float GetSpeed => speed;
+    public GameObject GetPlayer => player;
 }

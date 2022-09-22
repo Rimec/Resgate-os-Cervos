@@ -7,10 +7,10 @@ public class Vehicle : MonoBehaviour
 {
     private float time = 0.0f;
     [SerializeField] private float maxTime = 3.0f;
-    [SerializeField] private Transform initialTransform;
+    [SerializeField] private Vector3 initialPosition;
     private void Start(){
-        initialTransform = transform;
-        GameManager.instance.SetAmountOfDeerInGame(FindObjectsOfType<ScreensManager>().Length);
+        initialPosition = transform.position;
+        GameManager.instance.SetAmountOfDeerInGame(GameObject.FindGameObjectsWithTag("Deer").Length);
     }
     private void Update()
     {
@@ -36,8 +36,8 @@ public class Vehicle : MonoBehaviour
     }
 
     private void ResetVehicle(){
-        transform.position = initialTransform.position;
-        transform.rotation = initialTransform.rotation;
+        transform.position = initialPosition;
+        transform.rotation = Quaternion.identity;
     }
 
 }

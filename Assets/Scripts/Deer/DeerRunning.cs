@@ -9,7 +9,7 @@ public class DeerRunning : DeerStrategy
     Rigidbody _deerRigidbody = null;
     float _speed = -30.0f;
     public void Action(GameObject _deer){
-        _player = GameManager.instance.GetPlayer;
+        _player = _deer.GetComponent<Deer>().GetPlayer;
         if (_player != null)
         {
             _animator = _deer.GetComponent<Animator>();

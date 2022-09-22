@@ -38,10 +38,19 @@ public class ScreensManager : MonoBehaviour
 
     #endregion
 
+    #region Music
+
     [SerializeField] private Sprite withMusic, withoutMusic;
 
     private bool musicIsPlaying;
     
+    #endregion
+
+    #region HUD
+
+    [SerializeField] private TMPro.TextMeshProUGUI lifesText;
+
+    #endregion
        
     private void Awake()
     {
@@ -109,6 +118,8 @@ public class ScreensManager : MonoBehaviour
         initialScreen.SetActive(false);
         settingsScreen.SetActive(false);
         pausePanel.SetActive(false);
+        losePanel.SetActive(false);
+        winPanel.SetActive(false);
     }
     void RestartGame(){
         GameManager.instance.SetLife(GameManager.instance.GetMaxLife);
@@ -119,6 +130,8 @@ public class ScreensManager : MonoBehaviour
         initialScreen.SetActive(false);
         settingsScreen.SetActive(false);
         pausePanel.SetActive(false);
+        losePanel.SetActive(false);
+        winPanel.SetActive(false);
     }
 
     void BackToInitialScreen()
@@ -148,6 +161,10 @@ public class ScreensManager : MonoBehaviour
     {
         winPanel.SetActive(true);
         hudPanel.SetActive(false);
+    }
+
+    public void RefreshLifes(){
+        lifesText.text = $"Vidas: {GameManager.instance.GetLife}";
     }
 
     void Resume()

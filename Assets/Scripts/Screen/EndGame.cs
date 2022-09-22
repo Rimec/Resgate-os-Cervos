@@ -7,10 +7,10 @@ public class EndGame : MonoBehaviour
     void Start()
     {
         if(GameManager.instance.GetLost){
-            GameObject.FindObjectOfType<ScreensManager>().ShowLoseScreen();
+            GameObject.FindObjectOfType<ScreensManager>()?.ShowLoseScreen();
         }
         if(GameManager.instance.GetHasWon){
-            GameObject.FindObjectOfType<ScreensManager>().ShowWinScreen();
+            GameObject.FindObjectOfType<ScreensManager>()?.ShowWinScreen();
         }
     }
 }

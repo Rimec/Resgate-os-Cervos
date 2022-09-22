@@ -12,7 +12,12 @@ public class GameManager : MonoBehaviour
     private bool lost = false;
     private bool hasWon = false;
     [SerializeField] private int amountOfDeerInGame = int.MaxValue;
-    [SerializeField] private GameObject player;
+    private ScreensManager screensManager;
+
+    private void Start() {
+        screensManager = FindObjectOfType<ScreensManager>();
+    }
+    
     private void Awake() {
         if (instance == null)
         {
@@ -26,6 +31,7 @@ public class GameManager : MonoBehaviour
     }
     public void AddLife(int value){
         life += value;
+        screensManager.RefreshLifes();
         if (life > maxLife)
         {
             life = maxLife;
@@ -33,6 +39,7 @@ public class GameManager : MonoBehaviour
     }
     public void RemoveLife(int value){
         life -= value;
+        screensManager.RefreshLifes();
         if (life <= 0)
         {
             life = 0;
@@ -51,6 +58,7 @@ public class GameManager : MonoBehaviour
         {
             life = 0;
         }
+        screensManager.RefreshLifes();
     }
     public void AddDeersCollected(){
         deersColected++;
@@ -66,6 +74,7 @@ public class GameManager : MonoBehaviour
     public void SetAmountOfDeerInGame(int value){
         amountOfDeerInGame = value;
     }
+    public int GetLife => life;
     public int GetMaxLife => maxLife;
     public bool GetHasWon => hasWon;
     public bool GetLost => lost;
@@ -75,5 +84,4 @@ public class GameManager : MonoBehaviour
     public void SetHasWon(bool value){
         hasWon = value;
     }
-    public GameObject GetPlayer => player;
 }
